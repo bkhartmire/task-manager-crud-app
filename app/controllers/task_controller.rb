@@ -32,4 +32,17 @@ class TaskController < ApplicationController
       redirect '/login'
     end
   end
+
+  patch '/tasks/:id' do
+    @task = Task.find_by_id(params[:id])
+    unless params[:name].empty?
+      @task.name = params[:name]
+      @task.save
+      flash[:message] = "Successfully edited task"
+      redirect "/users/#{@user.slug}"
+    else
+      flash[:message] = "Please fill out all required fields"
+      redirect "/tasks/#{@task.id}/edit"
+    end
+  end
 end
