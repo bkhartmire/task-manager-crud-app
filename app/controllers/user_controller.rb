@@ -1,6 +1,8 @@
 require './config/environment'
+require 'rack-flash'
 
 class UserController < ApplicationController
+  use Rack::Flash
 
   get '/signup' do
     if logged_in?
@@ -25,7 +27,7 @@ class UserController < ApplicationController
     @user = User.find_by_slug(params[:slug])
     erb :'users/show'
   end
-  
+
   get '/login' do
     if logged_in?
       redirect '/users/#{@user.slug}'
@@ -41,6 +43,7 @@ class UserController < ApplicationController
       session[:user_id] = @user.id
       redirect '/users/#{@user.slug}'
     else
+      flash[:message] = "Incorrect login information. Please try again."
       redirect '/login'
     end
   end
