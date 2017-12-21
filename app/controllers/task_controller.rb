@@ -23,4 +23,13 @@ class TaskController < ApplicationController
       redirect "/tasks/new"
     end
   end
+
+  get '/tasks/:id/edit' do
+    @task = Task.find_by_id(params[:id])
+    if logged_in?
+      erb :'tasks/edit_task'
+    else
+      redirect '/login'
+    end
+  end
 end
