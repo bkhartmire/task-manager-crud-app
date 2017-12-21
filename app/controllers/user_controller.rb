@@ -21,6 +21,11 @@ class UserController < ApplicationController
     end
   end
 
+  get '/users/:slug' do
+    @user = User.find_by_slug(params[:slug])
+    erb :'users/show'
+  end
+  
   get '/login' do
     if logged_in?
       redirect '/users/#{@user.slug}'
@@ -40,8 +45,13 @@ class UserController < ApplicationController
     end
   end
 
-  get '/users/:slug' do
-    @user = User.find_by_slug(params[:slug])
-    erb :'users/show'
+  get '/logout' do
+    if logged_in?
+      session.clear
+      redirect "/login"
+    else
+      redirect '/'
+    end
   end
+
 end
