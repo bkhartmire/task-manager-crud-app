@@ -6,7 +6,7 @@ class UserController < ApplicationController
 
   get '/signup' do
     if logged_in?
-      redirect "/tweets"
+      redirect "/users/#{current_user.slug}"
     else
       erb :'users/create_user'
     end
@@ -16,21 +16,22 @@ class UserController < ApplicationController
     if params[:username] == "" || params[:password] == "" || params[:email] == ""
       redirect "/signup"
     else
-      @user = User.create(username: params[:userame], email: params[:email], password: params[:password])
+      @user = User.create(username: params[:username], email: params[:email], password: params[:password])
       @user.save
       session[:user_id] = @user.id
+      flash[:message] = "Welcome to Task Manager!"
       redirect "/users/#{@user.slug}"
     end
   end
 
-  get '/users/:slug' do
+  get "/users/:slug" do
     @user = User.find_by_slug(params[:slug])
     erb :'users/show'
   end
 
   get '/login' do
     if logged_in?
-      redirect "/users/#{@user.slug}"
+      redirect "/users/#{current_user/slug}"
     else
       erb :'users/login'
     end
