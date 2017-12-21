@@ -45,4 +45,15 @@ class TaskController < ApplicationController
       redirect "/tasks/#{@task.id}/edit"
     end
   end
+
+  delete '/tasks/:id/delete' do
+    @task = Task.find_by_id(params[:id])
+    if logged_in? && @task.user_id == current_user
+      @task.delete
+      flash[:message] = "Great job!! You're a rockstar!"
+      redirect "/users/#{@user.slug}"
+    else
+      redirect '/login'
+    end
+  end
 end
