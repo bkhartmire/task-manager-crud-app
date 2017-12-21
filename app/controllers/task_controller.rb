@@ -13,13 +13,14 @@ class TaskController < ApplicationController
   end
 
   post '/tasks' do
-    unless params[:content].empty?
-      @tweet = Tweet.create(:content => params[:content])
-      @tweet.user_id = current_user.id
-      @tweet.save
-      erb :"tweets/show_tweet"
+    unless params[:name].empty?
+      @task = Tweet.create(:name => params[:name])
+      @task.user_id = current_user.id
+      @task.save
+      redirect "/users/#{@user.slug}"
     else
-      redirect "/tweets/new"
+      flash[:message] = "Your task must contain text."
+      redirect "/tasks/new"
     end
   end
 end

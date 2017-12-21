@@ -19,7 +19,7 @@ class UserController < ApplicationController
       @user = User.create(username: params[:userame], email: params[:email], password: params[:password])
       @user.save
       session[:user_id] = @user.id
-      redirect '/users/#{@user.slug}'
+      redirect "/users/#{@user.slug}"
     end
   end
 
@@ -30,7 +30,7 @@ class UserController < ApplicationController
 
   get '/login' do
     if logged_in?
-      redirect '/users/#{@user.slug}'
+      redirect "/users/#{@user.slug}"
     else
       erb :'users/login'
     end
@@ -41,7 +41,7 @@ class UserController < ApplicationController
     @user = User.find_by(username: params[:username])
     if @user && @user.authenticate(params[:password])
       session[:user_id] = @user.id
-      redirect '/users/#{@user.slug}'
+      redirect "/users/#{@user.slug}"
     else
       flash[:message] = "Incorrect login information. Please try again."
       redirect '/login'
