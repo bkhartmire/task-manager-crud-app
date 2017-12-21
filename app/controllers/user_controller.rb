@@ -52,9 +52,9 @@ class UserController < ApplicationController
   get '/logout' do
     if logged_in?
       session.clear
-      redirect "/login"
+      erb :index
     else
-      redirect '/'
+      erb :index
     end
   end
 
