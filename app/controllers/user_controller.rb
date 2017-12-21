@@ -45,7 +45,7 @@ class UserController < ApplicationController
       redirect "/users/#{@user.slug}"
     else
       flash[:message] = "Incorrect login information. Please try again."
-      redirect '/login'
+      redirect '/'
     end
   end
 
