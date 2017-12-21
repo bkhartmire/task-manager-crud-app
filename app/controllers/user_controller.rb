@@ -10,5 +10,15 @@ class UserController < ApplicationController
     end
   end
 
+  post '/signup' do
+    if params[:username] == "" || params[:password] == "" || params[:email] == ""
+      redirect "/signup"
+    else
+      @user = User.create(username: params[:userame], email: params[:email], password: params[:password])
+      @user.save
+      session[:user_id] = @user.id
+      erb :'users/show'
+    end
+  end
 
 end
