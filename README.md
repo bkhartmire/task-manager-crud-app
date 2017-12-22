@@ -11,3 +11,8 @@ User Creates a Task Lisk:
     + can add task
     + can delete task (i.e. Task Completed)
     + Insert 'Great job!' flash message after Task Completed
+
+
+To do:
+-insert ben & martha
+-how to get Edit and Delete buttons next to each other
