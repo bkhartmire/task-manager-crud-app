@@ -5,11 +5,29 @@
 <ol><h3>Urgent Tasks:</h3>
   <%urgent_tasks = current_user.tasks.detect {|task| task.urgency == "urgent"}%>
   <%urgent_tasks.each do |task|%>
-  <li><%=task.name%>
-    <br></br>
-    <a href="/tasks/#{task.id}/edit">Edit</a><a href="/tasks/#{task.id}/delete">Mark Complete</a>
-  </li>
+    <li><%=task.name%>
+      <br></br>
+      <a href="/tasks/#{task.id}/edit">Edit</a><a href="/tasks/#{task.id}/delete">Mark Complete</a>
+    </li>
+  <%end%>
 </ol>
 
-<%less_urgent_tasks = current_user.tasks.detect {|task| task.urgency == "less_urgent"}%>
-<%unurgent_tasks = current_user.tasks.detect {|task| task.urgency == "unurgent"}%>
+<ol><h3>Less Urgent Tasks:</h3>
+  <%less_urgent_tasks = current_user.tasks.detect {|task| task.urgency == "less_urgent"}%>
+  <%less_urgent_tasks.each do |task|%>
+    <li><%=task.name%>
+      <br></br>
+      <a href="/tasks/#{task.id}/edit">Edit</a><a href="/tasks/#{task.id}/delete">Mark Complete</a>
+    </li>
+  <%end%>
+</ol>
+
+<ol><h3>Unurgent Tasks:</h3>
+  <%unurgent_tasks = current_user.tasks.detect {|task| task.urgency == "unurgent"}%>
+  <%unurgent_tasks.each do |task|%>
+    <li><%=task.name%>
+      <br></br>
+      <a href="/tasks/#{task.id}/edit">Edit</a><a href="/tasks/#{task.id}/delete">Mark Complete</a>
+    </li>
+  <%end%>
+</ol>
