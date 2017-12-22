@@ -52,7 +52,7 @@ class TaskController < ApplicationController
     if logged_in? && @task.user_id == current_user
       @task.delete
       flash[:message] = "Great job!! You're a rockstar!"
-      redirect "/users/#{@user.slug}"
+      redirect "/users/#{current_user.slug}"
     else
       redirect '/login'
     end

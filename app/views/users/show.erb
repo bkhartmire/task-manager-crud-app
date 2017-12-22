@@ -6,13 +6,17 @@
   <%urgent_tasks = current_user.tasks.find_all{|task| task.urgency == "urgent"}%>
   <%if !urgent_tasks.empty?%>
     <%urgent_tasks.each do |task|%>
-      <li><%=task.name%>
-        <br></br>
-        <a href="/tasks/#{task.id}/edit">Edit</a><a href="/tasks/#{task.id}/delete">Mark Complete</a>
+      <li>
+        <h4><%=task.name%></h4>
+        <a href="/tasks/<%=task.id%>/edit">Edit</a>
+        <form action="/tasks/<%=task.id%>/delete" method="post">
+          <input type="hidden" name="_method" value="delete">
+          <input type="submit" value="Mark Complete">
+        </form>
       </li>
     <%end%>
   <%else%>
-    <h5>You have no urgent tasks.</h5>
+    <h4>You have no urgent tasks.</h4>
   <%end%>
 </ol>
 
@@ -20,13 +24,17 @@
   <%less_urgent_tasks = current_user.tasks.find_all {|task| task.urgency == "less_urgent"}%>
   <%if !less_urgent_tasks.empty?%>
     <%less_urgent_tasks.each do |task|%>
-      <li><%=task.name%>
-        <br></br>
-        <a href="/tasks/#{task.id}/edit">Edit</a><a href="/tasks/#{task.id}/delete">Mark Complete</a>
+      <li>
+        <h4><%=task.name%></h4>
+        <a href="/tasks/<%=task.id%>/edit">Edit</a>
+        <form action="/tasks/<%=task.id%>/delete" method="post">
+          <input type="hidden" name="_method" value="delete">
+          <input type="submit" value="Mark Complete">
+        </form>
       </li>
     <%end%>
   <%else%>
-    <h5>You have no less urgent tasks.</h5>
+    <h4>You have no less urgent tasks.</h4>
   <%end%>
 </ol>
 
@@ -34,12 +42,16 @@
   <%unurgent_tasks = current_user.tasks.find_all {|task| task.urgency == "unurgent"}%>
   <%if !unurgent_tasks.empty?%>
     <%unurgent_tasks.each do |task|%>
-      <li><%=task.name%>
-        <br></br>
-        <a href="/tasks/#{task.id}/edit">Edit</a><a href="/tasks/#{task.id}/delete">Mark Complete</a>
+      <li>
+        <h4><%=task.name%></h4>
+        <a href="/tasks/<%=task.id%>/edit">Edit</a>
+        <form action="/tasks/<%=task.id%>/delete" method="post">
+          <input type="hidden" name="_method" value="delete">
+          <input type="submit" value="Mark Complete">
+        </form>
       </li>
     <%end%>
   <%else%>
-    <h5>You have no less urgent tasks.</h5>
+    <h4>You have no less urgent tasks.</h4>
   <%end%>
 </ol>
