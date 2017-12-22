@@ -6,7 +6,7 @@ class TaskController < ApplicationController
 
   get '/tasks/new' do
     if logged_in?
-      erb :'tasks/create_tasks'
+      erb :'tasks/create_task'
     else
       redirect '/login'
     end
