@@ -3,31 +3,43 @@
 <%#insert Ben here%>
 
 <ol><h3>Urgent Tasks:</h3>
-  <%urgent_tasks = current_user.tasks.detect {|task| task.urgency == "urgent"}%>
-  <%urgent_tasks.each do |task|%>
-    <li><%=task.name%>
-      <br></br>
-      <a href="/tasks/#{task.id}/edit">Edit</a><a href="/tasks/#{task.id}/delete">Mark Complete</a>
-    </li>
+  <%urgent_tasks = current_user.tasks.find_all{|task| task.urgency == "urgent"}%>
+  <%if !urgent_tasks.empty?%>
+    <%urgent_tasks.each do |task|%>
+      <li><%=task.name%>
+        <br></br>
+        <a href="/tasks/#{task.id}/edit">Edit</a><a href="/tasks/#{task.id}/delete">Mark Complete</a>
+      </li>
+    <%end%>
+  <%else%>
+    <h5>You have no urgent tasks.</h5>
   <%end%>
 </ol>
 
 <ol><h3>Less Urgent Tasks:</h3>
-  <%less_urgent_tasks = current_user.tasks.detect {|task| task.urgency == "less_urgent"}%>
-  <%less_urgent_tasks.each do |task|%>
-    <li><%=task.name%>
-      <br></br>
-      <a href="/tasks/#{task.id}/edit">Edit</a><a href="/tasks/#{task.id}/delete">Mark Complete</a>
-    </li>
+  <%less_urgent_tasks = current_user.tasks.find_all {|task| task.urgency == "less_urgent"}%>
+  <%if !less_urgent_tasks.empty?%>
+    <%less_urgent_tasks.each do |task|%>
+      <li><%=task.name%>
+        <br></br>
+        <a href="/tasks/#{task.id}/edit">Edit</a><a href="/tasks/#{task.id}/delete">Mark Complete</a>
+      </li>
+    <%end%>
+  <%else%>
+    <h5>You have no less urgent tasks.</h5>
   <%end%>
 </ol>
 
 <ol><h3>Unurgent Tasks:</h3>
-  <%unurgent_tasks = current_user.tasks.detect {|task| task.urgency == "unurgent"}%>
-  <%unurgent_tasks.each do |task|%>
-    <li><%=task.name%>
-      <br></br>
-      <a href="/tasks/#{task.id}/edit">Edit</a><a href="/tasks/#{task.id}/delete">Mark Complete</a>
-    </li>
+  <%unurgent_tasks = current_user.tasks.find_all {|task| task.urgency == "unurgent"}%>
+  <%if !unurgent_tasks.empty?%>
+    <%unurgent_tasks.each do |task|%>
+      <li><%=task.name%>
+        <br></br>
+        <a href="/tasks/#{task.id}/edit">Edit</a><a href="/tasks/#{task.id}/delete">Mark Complete</a>
+      </li>
+    <%end%>
+  <%else%>
+    <h5>You have no less urgent tasks.</h5>
   <%end%>
 </ol>
