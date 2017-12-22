@@ -13,7 +13,7 @@ class TaskController < ApplicationController
   end
 
   post '/tasks' do
-    unless params[:name].empty? || (params[:urgent].empty? && params[:less_urgent].empty? && params[:unurgent].empty?)
+    unless params[:name].nil? || params[:urgency].nil?
       @task = Task.create(:name => params[:name])
       @task.user_id = current_user.id
       @task.urgency = params[:urgency]
