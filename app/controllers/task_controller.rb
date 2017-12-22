@@ -49,7 +49,7 @@ class TaskController < ApplicationController
 
   delete '/tasks/:id/delete' do
     @task = Task.find_by_id(params[:id])
-    if logged_in? && @task.user_id == current_user
+    if logged_in?
       @task.delete
       flash[:message] = "Great job!! You're a rockstar!"
       redirect "/users/#{current_user.slug}"
