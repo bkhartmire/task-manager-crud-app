@@ -13,13 +13,20 @@ class TaskController < ApplicationController
   end
 
   post '/tasks' do
-    unless params[:name].empty?
-      @task = Tweet.create(:name => params[:name])
+    unless params[:name].empty? || (params[:urgent].empty? && params[:less_urgent].empty? && params[:unurgent].empty?)
+      @task = Task.create(:name => params[:name])
       @task.user_id = current_user.id
+      if !params[:urgent].empty?
+        @task.urgency = "urgent"
+      elsif !params[:less_urgent].empty?
+        @task.urgency = "less urgent"
+      else !params[:unurgent].empty?
+        @task.urgency = "unurgent"
+      end
       @task.save
-      redirect "/users/#{@user.slug}"
+      redirect "/users/#{current_user.slug}"
     else
-      flash[:message] = "Your task must contain text."
+      flash[:message] = "Your task must contain text and urgency level."
       redirect "/tasks/new"
     end
   end
