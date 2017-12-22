@@ -16,13 +16,7 @@ class TaskController < ApplicationController
     unless params[:name].empty? || (params[:urgent].empty? && params[:less_urgent].empty? && params[:unurgent].empty?)
       @task = Task.create(:name => params[:name])
       @task.user_id = current_user.id
-      if !params[:urgent].empty?
-        @task.urgency = "urgent"
-      elsif !params[:less_urgent].empty?
-        @task.urgency = "less urgent"
-      else !params[:unurgent].empty?
-        @task.urgency = "unurgent"
-      end
+      @task.urgency = params[:urgency]
       @task.save
       redirect "/users/#{current_user.slug}"
     else
