@@ -34,6 +34,11 @@ class TaskController < ApplicationController
     end
   end
 
+  post '/tasks/:id/edit' do
+    @task = Task.find_by_id(params[:id])
+    erb :'tasks/edit_task'
+  end
+
   patch '/tasks/:id' do
     @task = Task.find_by_id(params[:id])
     unless params[:name].empty?

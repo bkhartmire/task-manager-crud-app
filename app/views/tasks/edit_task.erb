@@ -1,6 +1,6 @@
 <h1>Edit Your Task</h1>
 <form action="/tasks/<%=@task.id%>" method="post">
-  <input type="hidden" name="_method" value="patch>"
+  <input type="hidden" name="_method" value="patch">
   <h4>Your Task: <input type="text" name="name" placeholder="<%=@task.name%>"></h4>
   <input type="radio" name="urgency" value="urgent">Urgent
   <input type="radio" name="urgency" value="less_urgent">Less Urgent
