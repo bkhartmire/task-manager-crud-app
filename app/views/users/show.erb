@@ -1,2 +1,15 @@
 <h1>Ready to get shit done,  <%= current_user.username%>?</h1>
 <a href="/tasks/new">Add Task</a> <a href="/logout">Log Out</a>
+<%#insert Ben here%>
+
+<ol><h3>Urgent Tasks:</h3>
+  <%urgent_tasks = current_user.tasks.detect {|task| task.urgency == "urgent"}%>
+  <%urgent_tasks.each do |task|%>
+  <li><%=task.name%>
+    <br></br>
+    <a href="/tasks/#{task.id}/edit">Edit</a><a href="/tasks/#{task.id}/delete">Mark Complete</a>
+  </li>
+</ol>
+
+<%less_urgent_tasks = current_user.tasks.detect {|task| task.urgency == "less_urgent"}%>
+<%unurgent_tasks = current_user.tasks.detect {|task| task.urgency == "unurgent"}%>
