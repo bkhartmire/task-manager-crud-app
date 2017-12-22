@@ -38,9 +38,10 @@ class TaskController < ApplicationController
     @task = Task.find_by_id(params[:id])
     unless params[:name].empty?
       @task.name = params[:name]
+      @task.urgency = params[:urgency]
       @task.save
       flash[:message] = "Successfully edited task"
-      redirect "/users/#{@user.slug}"
+      redirect "/users/#{current_user.slug}"
     else
       flash[:message] = "Please fill out all required fields"
       redirect "/tasks/#{@task.id}/edit"
