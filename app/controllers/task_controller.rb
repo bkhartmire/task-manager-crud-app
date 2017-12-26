@@ -13,10 +13,10 @@ class TaskController < ApplicationController
   end
 
   post '/tasks' do
-    unless params[:name].nil? || params[:urgency].nil?
-      @task = Task.create(:name => params[:name])
+    unless params[:task][:name].nil? || params[:task][:urgency].nil?
+      @task = Task.new(:name => params[:task][:name])
       @task.user_id = current_user.id
-      @task.urgency = params[:urgency]
+      @task.urgency = params[:task][:urgency]
       @task.save
       redirect "/users/#{current_user.slug}"
     else
@@ -25,6 +25,8 @@ class TaskController < ApplicationController
     end
   end
 
+  # params = {task: {name: "drop off package", urgency: "less_urgent", id: 5}}
+  # params = {name: "drop off package", .....}
   get '/tasks/:id/edit' do
     @task = Task.find_by_id(params[:id])
     if logged_in?

@@ -1,9 +1,9 @@
 <h1>What needs to get done?</h1>
 <form action="/tasks" method="post">
-  <h4>Your Task: <input type="text" name="name"></h4>
-  <input type="radio" name="urgency" value="urgent">Urgent
-  <input type="radio" name="urgency" value="less_urgent">Less Urgent
-  <input type="radio" name="urgency" value="unurgent">Unurgent
+  <h4>Your Task: <input type="text" name="task[name]"></h4>
+  <input type="radio" name="task[urgency]" value="urgent">Urgent
+  <input type="radio" name="task[urgency]" value="less_urgent">Less Urgent
+  <input type="radio" name="task[urgency]" value="unurgent">Unurgent
   <br></br>
   <input type="submit" value="Add">
 </form>

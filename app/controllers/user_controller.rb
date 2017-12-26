@@ -16,8 +16,7 @@ class UserController < ApplicationController
     if params[:username] == "" || params[:password] == "" || params[:email] == ""
       redirect "/signup"
     else
-      @user = User.create(username: params[:username], email: params[:email], password: params[:password])
-      @user.save
+      @user = User.create(params[:user])
       session[:user_id] = @user.id
       flash[:message] = "Welcome to Task Manager!"
       redirect "/users/#{@user.slug}"
